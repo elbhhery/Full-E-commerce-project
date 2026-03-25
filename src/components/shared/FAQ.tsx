@@ -34,8 +34,8 @@ export default function AccordionExpandDefault() {
     },
   ];
   return (
-    <div className="w-180 mx-auto mb-20!">
-      <h2 className="text-[#162135] w-full text-center text-4xl font-bold mb-8">
+    <div className="container mx-auto mb-20!">
+      <h2 className="text-[#162135] w-full text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
         Frequently Asked Questions
       </h2>
       {accordion.map((accordion) => {

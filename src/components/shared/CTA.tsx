@@ -18,35 +18,43 @@ export default function CTA() {
   return (
     <>
       <div className="container mb-20!">
-        <div className="cta-wrapper py-25 rounded-2xl px-[3.8rem]">
+        {/* أضفنا px-6 في الموبايل لتقليل الحواف الكبيرة */}
+        <div className="cta-wrapper py-16 md:py-25 rounded-2xl px-6 md:px-[3.8rem] relative overflow-hidden">
           <div className="overlay"></div>
 
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
-            className="w-full flex flex-col h-full justify-center relative z-10"
+            className="w-full flex flex-col h-full justify-center relative z-10 text-center md:text-left"
           >
             <span className="mb-3">Newsletter</span>
-            <h3 className="text-4xl tracking-[-1px] font-bold mb-5">
+            <h3 className="text-3xl md:text-4xl tracking-[-1px] font-bold mb-5">
               Stay in the Loop
             </h3>
-            <div className="flex justify-between w-full items-end">
-              <div className="flex flex-col gap-2">
-                <div className="flex gap-2">
+
+            {/* تحويل الـ flex من row إلى col في الموبايل */}
+            <div className="flex flex-col md:flex-row justify-between w-full items-center md:items-end gap-8 md:gap-0">
+              <div className="flex flex-col gap-2 w-full md:w-auto items-center md:items-start">
+                {/* جعل الـ input والزرار تحت بعض في الشاشات الصغيرة جداً */}
+                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                   <input
                     type="email"
                     name=""
                     id=""
-                    className="border-none bg-white px-4 py-1 rounded block text-gray-600"
+                    className="border-none bg-white px-4 py-2 md:py-1 rounded block text-gray-600 w-full sm:w-64"
                     placeholder="Your Email..."
                   />
-                  <MainButton text="Subscribe"></MainButton>
+                  <div className="mx-auto w-fit">
+                    <MainButton text="Subscribe"></MainButton>
+                  </div>
                 </div>
-                <span className="block">Thanks For Subscribing!</span>
+                <span className="block text-sm">Thanks For Subscribing!</span>
               </div>
-              <div>
-                <p className="max-w-76">
+
+              <div className="md:text-right">
+                {/* إزالة max-w-76 في الموبايل لكي لا ينحصر النص */}
+                <p className="max-w-full md:max-w-76 opacity-90">
                   Sign up for quick updates, early deals, and simple tech
                   insights.
                 </p>

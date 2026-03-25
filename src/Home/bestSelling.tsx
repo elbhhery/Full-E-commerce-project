@@ -15,7 +15,7 @@ export default function BestSelling() {
   }, []);
   return (
     <>
-      <div className="container py-14 px-6">
+      <div className="container py-14 px-6 overflow-hidden!">
         <h2 className="font-bold text-[rgb(22,33,53)] text-3xl my-4">
           BEST SELLERS HERE
         </h2>

@@ -50,7 +50,7 @@ export default function CTAcollections() {
       <div className="relative w-full overflow-hidden">
         {/* slider wrapper */}
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex transition-transform duration-500 ease-in-out overflow-hidden"
           style={{
             transform: `translateX(-${current * 100}%)`,
           }}

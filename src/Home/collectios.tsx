@@ -14,7 +14,7 @@ export default function Browsing() {
 
   return (
     <>
-      <div className="container p-4!">
+      <div className="container p-4! overflow-hidden!">
         <h3 className="lg:text-4xl md:text-3xl text-2xl font-black text-center my-10">
           Browse Our Collections
         </h3>

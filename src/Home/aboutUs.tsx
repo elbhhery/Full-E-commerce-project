@@ -52,7 +52,7 @@ export default function AboutUs() {
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
-        className="text-center block text-sm font-medium text-[#656b76] mt-12"
+        className="text-center block text-xl font-medium text-[#656b76] mt-12"
       >
         ABOUT US
       </motion.span>
@@ -60,7 +60,7 @@ export default function AboutUs() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.35 }}
-        className="mx-auto my-12 flex flex-col items-center lg:text-[4rem] sm:text-3xl text-[16px] md:text-5xl font-bold text-[#162135] leading-16 md:leading-22"
+        className="mx-auto my-12 flex flex-col items-center text-2xl md:text-5xl lg:text-[4rem] font-bold text-[#162135] leading-16 md:leading-22"
       >
         <motion.div
           variants={lineVariant}
@@ -72,7 +72,7 @@ export default function AboutUs() {
             <img
               src={about1}
               alt=""
-              className="mx-2 block w-15 sm:w-19 rounded-xl md:w-28 lg:w-35"
+              className="mx-2 block w-25 md:w-35 lg:w-40 rounded-xl"
             />
           </motion.span>
         </motion.div>
@@ -87,7 +87,7 @@ export default function AboutUs() {
             <img
               src={about2}
               alt=""
-              className="mx-2 block w-15 sm:w-19 rounded-xl md:w-28 lg:w-35"
+              className="mx-2 block w-25 md:w-35 lg:w-40 rounded-xl"
             />
           </motion.span>
 
@@ -104,7 +104,7 @@ export default function AboutUs() {
             <img
               src={about3}
               alt=""
-              className="mx-2 block w-15 sm:w-19 rounded-xl md:w-28 lg:w-35"
+              className="mx-2 block w-25 md:w-35 lg:w-40 rounded-xl"
             />
           </motion.span>
 

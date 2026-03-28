@@ -18,7 +18,6 @@ export default function CTA() {
   return (
     <>
       <div className="container mb-20!">
-        {/* أضفنا px-6 في الموبايل لتقليل الحواف الكبيرة */}
         <div className="cta-wrapper py-16 md:py-25 rounded-2xl px-6 md:px-[3.8rem] relative overflow-hidden">
           <div className="overlay"></div>
 
@@ -32,11 +31,8 @@ export default function CTA() {
             <h3 className="text-3xl md:text-4xl tracking-[-1px] font-bold mb-5">
               Stay in the Loop
             </h3>
-
-            {/* تحويل الـ flex من row إلى col في الموبايل */}
             <div className="flex flex-col md:flex-row justify-between w-full items-center md:items-end gap-8 md:gap-0">
               <div className="flex flex-col gap-2 w-full md:w-auto items-center md:items-start">
-                {/* جعل الـ input والزرار تحت بعض في الشاشات الصغيرة جداً */}
                 <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                   <input
                     type="email"
@@ -53,7 +49,6 @@ export default function CTA() {
               </div>
 
               <div className="md:text-right">
-                {/* إزالة max-w-76 في الموبايل لكي لا ينحصر النص */}
                 <p className="max-w-full md:max-w-76 opacity-90">
                   Sign up for quick updates, early deals, and simple tech
                   insights.

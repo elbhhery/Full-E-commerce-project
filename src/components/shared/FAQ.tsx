@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
 export default function AccordionExpandDefault() {
-  const [expanded, setExpanded] = useState<string | false>(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
   const accordion = [
     {
       Q: "What payment methods do you accept?",
@@ -34,7 +34,7 @@ export default function AccordionExpandDefault() {
     },
   ];
   return (
-    <div className="container mx-auto mb-20!">
+    <div className="container mx-auto mb-20! lg:px-50!">
       <h2 className="text-[#162135] w-full text-center text-2xl md:text-3xl lg:text-4xl font-bold mb-8">
         Frequently Asked Questions
       </h2>
@@ -45,7 +45,9 @@ export default function AccordionExpandDefault() {
             className="accordion"
             expanded={expanded === accordion.id}
             onMouseEnter={() => setExpanded(accordion.id)}
-            onClick={() => setExpanded(false)}
+            onClick={() =>
+              setExpanded(expanded === accordion.id ? null : accordion.id)
+            }
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}

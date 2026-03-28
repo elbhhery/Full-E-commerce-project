@@ -42,6 +42,24 @@ export type Collection = {
   handle: string;
   description: string;
   updatedAt: string;
+  products: {
+    nodes: {
+      id: string;
+      title: string;
+      handle: string;
+      images: {
+        nodes: {
+          url: string;
+        };
+      };
+      priceRange: {
+        minVariantPrice: {
+          amount: string;
+          currencyCode: string;
+        };
+      };
+    };
+  };
   image: {
     url: string;
   };
@@ -50,6 +68,21 @@ export type Collection = {
     description: string | null;
   };
 };
+export type products = {
+  id: string;
+  title: string;
+  handle: string;
+  priceRange: {
+    minVariantPrice: {
+      amount: string;
+      currencyCode: string;
+    };
+  };
+  images: {
+    nodes: { url: string }[];
+  };
+};
+
 export async function getCollections(): Promise<Collection[]> {
   const query = `
     {
@@ -87,4 +120,43 @@ export async function getCollections(): Promise<Collection[]> {
 
   console.log(data.collections.pageInfo);
   return data.collections.nodes.filter((item) => item.handle !== "best-seller");
+}
+
+export async function getCollectionsByHandle(handle: string) {
+  const query = `
+    query getSingleCollection($handle: String!) {
+      collection(handle: $handle) {
+        id
+        title
+        handle
+        description
+        image {
+          url
+        }
+        products(first: 20) {
+          nodes {
+            id
+            title
+            handle
+            priceRange {
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            images(first: 4) {
+              nodes {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+  const data = await shopifyFetch<{ collection: Collection }>({
+    query,
+    variables: { handle },
+  });
+  return data.collection;
 }

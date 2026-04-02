@@ -1,25 +1,25 @@
 import { AnimatePresence, motion } from "framer-motion";
-import Accordion, { accordionClasses } from "@mui/material/Accordion";
-import { type AccordionSlots } from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails, {
-  accordionDetailsClasses,
-} from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Fade from "@mui/material/Fade";
-import { useState } from "react";
+// import Accordion, { accordionClasses } from "@mui/material/Accordion";
+// import { type AccordionSlots } from "@mui/material/Accordion";
+// import AccordionSummary from "@mui/material/AccordionSummary";
+// import AccordionDetails, {
+//   accordionDetailsClasses,
+// } from "@mui/material/AccordionDetails";
+// import Typography from "@mui/material/Typography";
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// import Fade from "@mui/material/Fade";
+// import { useState } from "react";
 
 interface FilterSide {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }
 export default function FilterSlider({ isOpen, setIsOpen }: FilterSide) {
-  const [expanded, setExpanded] = useState(false);
+  // const [expanded, setExpanded] = useState(false);
 
-  const handleExpansion = () => {
-    setExpanded((prevExpanded) => !prevExpanded);
-  };
+  // const handleExpansion = () => {
+  //   setExpanded((prevExpanded) => !prevExpanded);
+  // };
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { SwiperSlide, Swiper } from "swiper/react";
-import { Pagination, A11y, Mousewheel } from "swiper/modules";
+import { SwiperSlide } from "swiper/react";
+// import { Pagination, A11y, Mousewheel } from "swiper/modules";
 import { getCollections, type Collection } from "@/lib/getCollections";
 import { Link } from "react-router-dom";
 import MainHeader from "@/Home/headerComponents/mainHeader";

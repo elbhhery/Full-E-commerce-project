@@ -47,7 +47,7 @@ const Footer3 = () => {
       label: "Instagram",
       icon: (
         <svg
-          className="w-[1.25rem] h-[1.125rem] text-white"
+          className="w-5 h-4.5 text-white"
           viewBox="0 0 15 15"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ const Footer3 = () => {
       label: "LinkedIn",
       icon: (
         <svg
-          className="w-[1rem] h-[1rem] text-white"
+          className="w-4 h-4 text-white"
           viewBox="0 0 13 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +81,7 @@ const Footer3 = () => {
       label: "YouTube",
       icon: (
         <svg
-          className="w-[1.25rem] h-[0.875rem] text-white"
+          className="w-5 h-3.5 text-white"
           viewBox="0 0 16 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

@@ -86,7 +86,7 @@ export type products = {
 export async function getCollections(): Promise<Collection[]> {
   const query = `
     {
-      collections(first: 4) {
+      collections(first: 10) {
         nodes {
           id
           title

@@ -2,15 +2,19 @@ import Profile from "../../assets/icons/profile.svg";
 import cart from "../../assets/icons/cart.svg";
 import { useState } from "react";
 import MobileMenu from "./sideBar";
+import { Link } from "react-router-dom";
 export default function MainHeader() {
   const [hidden, setHidden] = useState(false);
   return (
     <header className="py-6">
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* LOGO */}
-        <h1 className="font-black text-2xl md:text-3xl cursor-pointer">
+        <Link
+          to={"/"}
+          className="font-black text-2xl md:text-3xl cursor-pointer"
+        >
           SHOP.CO
-        </h1>
+        </Link>
 
         {/* NAV LINKS */}
         <ul className="hidden md:flex gap-6 lg:gap-10 font-medium">

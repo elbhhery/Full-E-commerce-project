@@ -1,4 +1,5 @@
 import { SecondaryButton } from "@/components/ui/buttons";
+import { Link } from "react-router-dom";
 export default function CallOut() {
   return (
     <div className="container w-fit! px-6">
@@ -24,7 +25,9 @@ export default function CallOut() {
         <span className="font-light text-[17px] text-center md:text-[14px]">
           Want to see more of what we currently offer?
         </span>
-        <SecondaryButton text="Shop Collection" />
+        <Link to={"/collections"}>
+          <SecondaryButton text="Shop Collection" />
+        </Link>
       </div>
     </div>
   );

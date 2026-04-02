@@ -1,8 +1,8 @@
-import FlowButton from "../components/ui/buttons";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, A11y, Mousewheel } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { getCollections, type Collection } from "../lib/getCollections";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, A11y, Mousewheel } from "swiper/modules";
+import FlowButton from "../components/ui/buttons";
 
 export default function Browsing() {
   const [collections, setCollections] = useState<Collection[]>([]);

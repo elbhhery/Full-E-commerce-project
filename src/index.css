@@ -134,6 +134,7 @@ a {
 .cta-wrapper {
   background-image: url(./assets//images/newsletter.webp);
   background-size: cover;
+  background-position: center center;
   position: relative;
   color: white;
 }

@@ -2,7 +2,7 @@ import smartPhone from "../assets/images/promo01smartPhones.webp";
 import headPhone from "../assets/images/promo03headPhone.webp";
 import smartwatch from "../assets/images/promo02smartwatch.webp";
 import { MainButton } from "@/components/ui/buttons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function CTAcollections() {
   const collections = [
@@ -37,20 +37,24 @@ export default function CTAcollections() {
 
   const [current, setCurrent] = useState(0);
 
-  const handlePrev = () => {
-    setCurrent((prev) => (prev === 0 ? collections.length - 1 : prev - 1));
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % collections.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
-  const handleNext = () => {
+  const handlePrev = () =>
+    setCurrent((prev) => (prev === 0 ? collections.length - 1 : prev - 1));
+  const handleNext = () =>
     setCurrent((prev) => (prev + 1) % collections.length);
-  };
 
   return (
     <div className="container w-full mx-auto px-4">
       <div className="relative w-full overflow-hidden">
         {/* slider wrapper */}
         <div
-          className="flex transition-transform duration-500 ease-in-out overflow-hidden"
+          className="flex transition-transform duration-500 ease-in-out"
           style={{
             transform: `translateX(-${current * 100}%)`,
           }}
@@ -119,7 +123,7 @@ export default function CTAcollections() {
           </button>
         </div>
 
-        <div className="absolute z-30 bottom-20 md:bottom-20 left-1/2 -translate-x-1/2 w-[90%] md:w-fit max-w-100 md:max-w-none">
+        <div className="absolute z-30 bottom-15 hidden md:block left-1/2 -translate-x-1/2 w-[90%] md:w-fit max-w-100 md:max-w-none">
           <div className="flex gap-2 bg-white/65 p-2 rounded-[3rem] border border-gray-200 shadow-xl overflow-x-auto no-scrollbar scroll-smooth">
             {collections.map((collection, index) => (
               <button

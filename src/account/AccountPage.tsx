@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { getCustomerDetails, CustomerDetails, updateCustomer } from "../lib/customerOperations";
+import { getCustomerDetails, updateCustomer } from "../lib/customerOperations";
+import { type CustomerDetails } from "../lib/customerOperations";
 import MainHeader from "../Home/headerComponents/mainHeader";
 import Footer from "../components/shared/Footer";
 import { User, Package, MapPin, LogOut, Edit, Check, X, ChevronRight } from "lucide-react";
@@ -14,7 +15,7 @@ export default function AccountPage() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
-  
+
   // Edit form state
   const [editForm, setEditForm] = useState({
     firstName: "",
@@ -46,7 +47,7 @@ export default function AccountPage() {
         setLoading(false);
       }
     }
-    
+
     if (isAuthenticated && accessToken) {
       fetchDetails();
     }
@@ -59,7 +60,7 @@ export default function AccountPage() {
 
   const handleSave = async () => {
     if (!accessToken) return;
-    
+
     setSaving(true);
     const result = await updateCustomer(
       accessToken,
@@ -115,7 +116,7 @@ export default function AccountPage() {
   return (
     <>
       <MainHeader />
-      
+
       <main className="container mx-auto px-4 py-8 min-h-screen">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -326,11 +327,10 @@ export default function AccountPage() {
                     <p className="font-medium">Order #{order.orderNumber}</p>
                     <p className="text-sm text-gray-500">{formatDate(order.processedAt)}</p>
                     <p className="text-sm">
-                      <span className={`px-2 py-0.5 rounded-full text-xs ${
-                        order.fulfillmentStatus === "FULFILLED" 
+                      <span className={`px-2 py-0.5 rounded-full text-xs ${order.fulfillmentStatus === "FULFILLED"
                           ? "bg-green-100 text-green-700"
                           : "bg-yellow-100 text-yellow-700"
-                      }`}>
+                        }`}>
                         {order.fulfillmentStatus || "Processing"}
                       </span>
                     </p>

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { getCustomerDetails, Order } from "../lib/customerOperations";
+import { getCustomerDetails } from "../lib/customerOperations";
+import { type Order } from "../lib/customerOperations";
 import MainHeader from "../Home/headerComponents/mainHeader";
 import Footer from "../components/shared/Footer";
 import { Package, ChevronLeft, ChevronDown, ChevronUp } from "lucide-react";
@@ -29,7 +30,7 @@ export default function OrdersPage() {
         setLoading(false);
       }
     }
-    
+
     if (isAuthenticated && accessToken) {
       fetchOrders();
     }
@@ -78,7 +79,7 @@ export default function OrdersPage() {
   return (
     <>
       <MainHeader />
-      
+
       <main className="container mx-auto px-4 py-8 min-h-screen">
         {/* Header */}
         <div className="mb-8">
@@ -143,7 +144,7 @@ export default function OrdersPage() {
                       <p className="text-sm text-gray-500">{formatDate(order.processedAt)}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-4">
                     <div className="text-right hidden sm:block">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(order.fulfillmentStatus)}`}>

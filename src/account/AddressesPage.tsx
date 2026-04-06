@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { getCustomerDetails, Address, createAddress, updateAddress, deleteAddress } from "../lib/customerOperations";
+import { getCustomerDetails, createAddress, updateAddress, deleteAddress } from "../lib/customerOperations";
+import { type Address } from "../lib/customerOperations";
 import MainHeader from "../Home/headerComponents/mainHeader";
 import Footer from "../components/shared/Footer";
 import { MapPin, ChevronLeft, Plus, Edit, Trash2, X } from "lucide-react";
@@ -87,9 +88,9 @@ export default function AddressesPage() {
 
   const handleSave = async () => {
     if (!accessToken) return;
-    
+
     setSaving(true);
-    
+
     const addressData = {
       firstName: form.firstName,
       lastName: form.lastName,
@@ -119,7 +120,7 @@ export default function AddressesPage() {
 
   const handleDelete = async (addressId: string) => {
     if (!accessToken) return;
-    
+
     setDeleting(addressId);
     const result = await deleteAddress(accessToken, addressId);
     setDeleting(null);
@@ -144,7 +145,7 @@ export default function AddressesPage() {
   return (
     <>
       <MainHeader />
-      
+
       <main className="container mx-auto px-4 py-8 min-h-screen">
         {/* Header */}
         <div className="mb-8">
@@ -220,7 +221,7 @@ export default function AddressesPage() {
                     </button>
                   </div>
                 </div>
-                
+
                 <div className="space-y-1">
                   <p className="font-medium">{address.firstName} {address.lastName}</p>
                   <p className="text-gray-600 text-sm">{address.address1}</p>

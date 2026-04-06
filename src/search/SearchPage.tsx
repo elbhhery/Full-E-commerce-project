@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSearchParams, Link, useNavigate } from "react-router-dom";
-import { searchProducts, SearchProduct } from "../lib/searchProducts";
+import { searchProducts, type SearchProduct } from "../lib/searchProducts";
 import { useCart } from "../context/CartContext";
 import MainHeader from "../Home/headerComponents/mainHeader";
 import Footer from "../components/shared/Footer";
@@ -13,7 +13,7 @@ export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const initialQuery = searchParams.get("q") || "";
-  
+
   const [query, setQuery] = useState(initialQuery);
   const [products, setProducts] = useState<SearchProduct[]>([]);
   const [loading, setLoading] = useState(false);
@@ -63,7 +63,7 @@ export default function SearchPage() {
   const handleAddToCart = async (product: SearchProduct) => {
     const variantId = product.variants.nodes[0]?.id;
     if (!variantId) return;
-    
+
     setAddingToCart(product.id);
     await addToCart(variantId, 1);
     setAddingToCart(null);
@@ -85,12 +85,12 @@ export default function SearchPage() {
   return (
     <>
       <MainHeader />
-      
+
       <main className="container mx-auto px-4 py-8 min-h-screen">
         {/* Search Header */}
         <div className="max-w-2xl mx-auto mb-8">
           <h1 className="text-3xl font-bold text-center mb-6">Search Products</h1>
-          
+
           {/* Search Form */}
           <form onSubmit={handleSearch} className="relative">
             <input
@@ -167,11 +167,10 @@ export default function SearchPage() {
                               setReverse(false);
                             }
                           }}
-                          className={`w-full text-left px-4 py-2 rounded-lg transition ${
-                            sortKey === option.key
+                          className={`w-full text-left px-4 py-2 rounded-lg transition ${sortKey === option.key
                               ? "bg-[#354062] text-white"
                               : "hover:bg-gray-100"
-                          }`}
+                            }`}
                         >
                           {option.label}
                         </button>
@@ -239,14 +238,14 @@ export default function SearchPage() {
                     )}
                   </div>
                 </Link>
-                
+
                 <div className="space-y-2">
                   <Link to={`/product/${product.handle}`}>
                     <h3 className="font-medium text-sm line-clamp-2 group-hover:text-[#354062] transition">
                       {product.title}
                     </h3>
                   </Link>
-                  
+
                   <div className="flex items-center justify-between">
                     <p className="font-bold text-sm">
                       {formatPrice(
@@ -254,7 +253,7 @@ export default function SearchPage() {
                         product.priceRange.minVariantPrice.currencyCode
                       )}
                     </p>
-                    
+
                     <button
                       onClick={() => handleAddToCart(product)}
                       disabled={cartLoading || addingToCart === product.id}

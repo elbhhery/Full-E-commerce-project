@@ -1,11 +1,11 @@
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
-import { 
-  Cart, 
-  createCart, 
-  getCart, 
-  addToCart as addToCartApi, 
-  updateCartLine, 
-  removeFromCart as removeFromCartApi 
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
+import {
+  type Cart,
+  createCart,
+  getCart,
+  addToCart as addToCartApi,
+  updateCartLine,
+  removeFromCart as removeFromCartApi
 } from "../lib/cartOperations";
 
 interface CartContextType {
@@ -34,7 +34,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       setIsLoading(true);
       try {
         const savedCartId = localStorage.getItem(CART_ID_KEY);
-        
+
         if (savedCartId) {
           const existingCart = await getCart(savedCartId);
           if (existingCart) {
@@ -43,7 +43,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             return;
           }
         }
-        
+
         // Create new cart if none exists
         const newCart = await createCart();
         localStorage.setItem(CART_ID_KEY, newCart.id);
@@ -60,7 +60,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addToCart = useCallback(async (variantId: string, quantity: number = 1) => {
     if (!cart) return;
-    
+
     try {
       setIsLoading(true);
       const updatedCart = await addToCartApi(cart.id, variantId, quantity);
@@ -75,7 +75,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const updateQuantity = useCallback(async (lineId: string, quantity: number) => {
     if (!cart) return;
-    
+
     try {
       setIsLoading(true);
       if (quantity <= 0) {
@@ -94,7 +94,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const removeItem = useCallback(async (lineId: string) => {
     if (!cart) return;
-    
+
     try {
       setIsLoading(true);
       const updatedCart = await removeFromCartApi(cart.id, [lineId]);

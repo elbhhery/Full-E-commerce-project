@@ -1,7 +1,7 @@
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
-import { 
-  Customer, 
-  CustomerAccessToken,
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
+import {
+  type Customer,
+  type CustomerAccessToken,
   customerLogin as loginApi,
   customerRegister as registerApi,
   customerLogout as logoutApi,
@@ -80,13 +80,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(true);
     try {
       const result = await loginApi(email, password);
-      
+
       if (result.success && result.token && result.customer) {
         saveToken(result.token);
         setCustomer(result.customer);
         return { success: true };
       }
-      
+
       return { success: false, error: result.error };
     } finally {
       setIsLoading(false);
@@ -94,21 +94,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const register = useCallback(async (
-    firstName: string, 
-    lastName: string, 
-    email: string, 
+    firstName: string,
+    lastName: string,
+    email: string,
     password: string
   ) => {
     setIsLoading(true);
     try {
       const result = await registerApi(firstName, lastName, email, password);
-      
+
       if (result.success && result.token && result.customer) {
         saveToken(result.token);
         setCustomer(result.customer);
         return { success: true };
       }
-      
+
       return { success: false, error: result.error };
     } finally {
       setIsLoading(false);

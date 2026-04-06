@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getProduct, getRelatedProducts, Product, ProductVariant } from "../lib/getProduct";
+import { getProduct, getRelatedProducts, type Product, type ProductVariant } from "../lib/getProduct";
 import { useCart } from "../context/CartContext";
 import MainHeader from "../Home/headerComponents/mainHeader";
 import Footer from "../components/shared/Footer";
@@ -25,7 +25,7 @@ export default function ProductPage() {
       try {
         const productData = await getProduct(handle);
         setProduct(productData);
-        
+
         // Set default options
         if (productData?.options) {
           const defaults: Record<string, string> = {};
@@ -46,7 +46,7 @@ export default function ProductPage() {
         setLoading(false);
       }
     }
-    
+
     fetchProduct();
     setSelectedImage(0);
     setQuantity(1);
@@ -56,7 +56,7 @@ export default function ProductPage() {
   // Find the selected variant based on selected options
   const findSelectedVariant = (): ProductVariant | undefined => {
     if (!product) return undefined;
-    
+
     return product.variants.nodes.find(variant => {
       return variant.selectedOptions.every(
         option => selectedOptions[option.name] === option.value
@@ -75,7 +75,7 @@ export default function ProductPage() {
 
   const handleAddToCart = async () => {
     if (!selectedVariant || !selectedVariant.availableForSale) return;
-    
+
     await addToCart(selectedVariant.id, quantity);
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 2000);
@@ -116,7 +116,7 @@ export default function ProductPage() {
   return (
     <>
       <MainHeader />
-      
+
       <main className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
@@ -137,9 +137,8 @@ export default function ProductPage() {
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
-                  className={`w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition flex-shrink-0 ${
-                    selectedImage === index ? "border-[#354062]" : "border-transparent"
-                  }`}
+                  className={`w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition flex-shrink-0 ${selectedImage === index ? "border-[#354062]" : "border-transparent"
+                    }`}
                 >
                   <img
                     src={image.url}
@@ -151,7 +150,7 @@ export default function ProductPage() {
             </div>
 
             {/* Main Image */}
-            <motion.div 
+            <motion.div
               className="flex-1 aspect-square bg-gray-100 rounded-2xl overflow-hidden"
               key={selectedImage}
               initial={{ opacity: 0 }}
@@ -169,7 +168,7 @@ export default function ProductPage() {
           {/* Product Info */}
           <div className="flex flex-col">
             <h1 className="text-2xl md:text-3xl font-bold mb-4">{product.title}</h1>
-            
+
             {/* Price */}
             <div className="flex items-center gap-3 mb-6">
               <span className="text-2xl font-bold">
@@ -197,11 +196,10 @@ export default function ProductPage() {
                         <button
                           key={value}
                           onClick={() => setSelectedOptions(prev => ({ ...prev, [option.name]: value }))}
-                          className={`px-4 py-2 rounded-full border transition ${
-                            isSelected
+                          className={`px-4 py-2 rounded-full border transition ${isSelected
                               ? "bg-[#354062] text-white border-[#354062]"
                               : "border-gray-300 hover:border-[#354062]"
-                          }`}
+                            }`}
                         >
                           {value}
                         </button>
@@ -236,13 +234,12 @@ export default function ProductPage() {
             <button
               onClick={handleAddToCart}
               disabled={!selectedVariant?.availableForSale || cartLoading}
-              className={`w-full py-4 rounded-full font-semibold transition flex items-center justify-center gap-2 ${
-                !selectedVariant?.availableForSale
+              className={`w-full py-4 rounded-full font-semibold transition flex items-center justify-center gap-2 ${!selectedVariant?.availableForSale
                   ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                   : addedToCart
-                  ? "bg-green-500 text-white"
-                  : "bg-[#354062] text-white hover:bg-[#2a3350]"
-              }`}
+                    ? "bg-green-500 text-white"
+                    : "bg-[#354062] text-white hover:bg-[#2a3350]"
+                }`}
             >
               {cartLoading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -262,7 +259,7 @@ export default function ProductPage() {
             <div className="mt-8 pt-8 border-t">
               <h2 className="font-bold text-lg mb-4">Product Description</h2>
               {product.descriptionHtml ? (
-                <div 
+                <div
                   className="text-gray-600 prose prose-sm max-w-none"
                   dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
                 />

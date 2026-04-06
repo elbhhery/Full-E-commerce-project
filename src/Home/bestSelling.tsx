@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, A11y, Mousewheel } from "swiper/modules";
 import FlowButton from "@/components/ui/buttons";
+import { Link } from "react-router-dom";
 export default function BestSelling() {
   const [products, setProducts] = useState<Product[]>([]);
   useEffect(() => {
@@ -47,19 +48,21 @@ export default function BestSelling() {
             {products.map((product: Product) => {
               return (
                 <SwiperSlide className="w-full" key={product.id}>
-                  <img
-                    src={product.featuredImage?.url}
-                    alt=""
-                    className=" rounded-2xl"
-                  />
-                  <div className="card-details text-left">
-                    <h4 className="lg:font-semibold font-medium md:text-xl text-lg my-2 text-[rgb(22,33,53)]">
-                      {product.title}
-                    </h4>
-                    <span className="text-[rgb(81,131,57)] font-bold">
-                      ${product.priceRange.minVariantPrice.amount}
-                    </span>
-                  </div>
+                  <Link to={`/product/${product.handle}`} className="block group">
+                    <img
+                      src={product.featuredImage?.url}
+                      alt={product.title}
+                      className="rounded-2xl group-hover:scale-[1.02] transition-transform duration-300"
+                    />
+                    <div className="card-details text-left">
+                      <h4 className="lg:font-semibold font-medium md:text-xl text-lg my-2 text-[rgb(22,33,53)] group-hover:text-[#354062] transition">
+                        {product.title}
+                      </h4>
+                      <span className="text-[rgb(81,131,57)] font-bold">
+                        ${product.priceRange.minVariantPrice.amount}
+                      </span>
+                    </div>
+                  </Link>
                 </SwiperSlide>
               );
             })}

@@ -133,12 +133,14 @@ export default function CollectionsProducts() {
           {sortProducts.map((item: products) => (
             <div key={item.id}>
               {item.images?.nodes[0] && (
-                <a className="relative group">
-                  <img
-                    src={item.images.nodes[0].url}
-                    alt={item.title}
-                    className="w-full rounded-2xl mb-4"
-                  />
+                <div className="relative group">
+                  <Link to={`/product/${item.handle}`}>
+                    <img
+                      src={item.images.nodes[0].url}
+                      alt={item.title}
+                      className="w-full rounded-2xl mb-4 group-hover:scale-[1.02] transition-transform duration-300"
+                    />
+                  </Link>
                   <span
                     onClick={() => QuickView(item)}
                     className="absolute right-4 bottom-7 cursor-pointer bg-[#3a466a] p-2 text-white rounded-[5px] inline md:hidden"
@@ -171,11 +173,13 @@ export default function CollectionsProducts() {
                       onClick={() => QuickView(item)}
                     />
                   </motion.span>
-                </a>
+                </div>
               )}
-              <h2 className="font-semibold text-[#162135] text-[15px]">
-                {item.title}
-              </h2>
+              <Link to={`/product/${item.handle}`} className="hover:text-[#354062] transition">
+                <h2 className="font-semibold text-[#162135] text-[15px]">
+                  {item.title}
+                </h2>
+              </Link>
               <p className="text-green-800 font-semibold">
                 {item.priceRange?.minVariantPrice?.amount}
                 {item.priceRange?.minVariantPrice?.currencyCode}

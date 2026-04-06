@@ -52,6 +52,12 @@ export async function getProducts() {
           priceRange {
             minVariantPrice {
               amount
+              currencyCode
+            }
+          }
+          variants(first: 1) {
+            nodes {
+              id
             }
           }
         }

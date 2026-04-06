@@ -1,8 +1,10 @@
 import { getProducts } from "../lib/getProducts";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 interface Products {
   id: number;
   title: string;
+  handle: string;
   priceRange: {
     minVariantPrice: { amount: string };
   };
@@ -54,14 +56,14 @@ export default function NewArrivals() {
         <div className=" grid w-full grid-cols-2 gap-8 py-8 md:grid-cols-3 lg:grid-cols-4 px-4">
           {products.map((product: Products) => {
             return (
-              <div className="w-full" key={product.id}>
+              <Link to={`/product/${product.handle}`} className="w-full group" key={product.id}>
                 <img
                   src={product.featuredImage.url}
-                  alt=""
-                  className="w-full aspect-square object-cover rounded-2xl"
+                  alt={product.title}
+                  className="w-full aspect-square object-cover rounded-2xl group-hover:scale-[1.02] transition-transform duration-300"
                 />
                 <div className="card-details text-left">
-                  <h4 className="font-semibold text-xl my-2">
+                  <h4 className="font-semibold text-xl my-2 group-hover:text-[#354062] transition">
                     {product.title}
                   </h4>
                   {product.hasDiscount ? (
@@ -82,7 +84,7 @@ export default function NewArrivals() {
                     </span>
                   )}
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

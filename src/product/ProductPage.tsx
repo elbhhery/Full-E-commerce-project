@@ -66,6 +66,19 @@ export default function ProductPage() {
 
   const selectedVariant = findSelectedVariant();
 
+  // Update selected image when variant changes (if variant has an image)
+  useEffect(() => {
+    if (selectedVariant?.image && product) {
+      // Find the index of the variant's image in the images array
+      const variantImageIndex = product.images.nodes.findIndex(
+        img => img.url === selectedVariant.image?.url
+      );
+      if (variantImageIndex !== -1) {
+        setSelectedImage(variantImageIndex);
+      }
+    }
+  }, [selectedVariant, product]);
+
   const formatPrice = (amount: string, currencyCode: string) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",

@@ -16,6 +16,10 @@ export interface ProductVariant {
     name: string;
     value: string;
   }[];
+  image: {
+    url: string;
+    altText: string | null;
+  } | null;
 }
 
 export interface ProductImage {
@@ -88,6 +92,10 @@ export async function getProduct(handle: string): Promise<Product | null> {
             selectedOptions {
               name
               value
+            }
+            image {
+              url
+              altText
             }
           }
         }
